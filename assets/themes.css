@@ -1,0 +1,27 @@
+/* Готовые палитры для подбора (режим designLab). Основная палитра (бургунди) — в style-iguide.css */
+[data-palette="indigo"]{--ink:#070b17;--bg:#ecedf3;--surface:#fafafd;--line:#dcdde8;--text:#16192b;--muted:#51577a;--accent:#4b3ee6;--accent-soft:color-mix(in srgb,var(--accent) 9%,var(--bg))}
+[data-palette="mint"]{--ink:#0a1f22;--bg:#eaf0ee;--surface:#f9fbfa;--line:#d7e2df;--text:#122624;--muted:#4f6866;--accent:#0c8571;--accent-soft:color-mix(in srgb,var(--accent) 9%,var(--bg))}
+[data-palette="ocean"]{--ink:#08152b;--bg:#ebeff5;--surface:#f9fafd;--line:#d8dfeb;--text:#101b31;--muted:#4d5d79;--accent:#1d4fcf;--accent-soft:color-mix(in srgb,var(--accent) 9%,var(--bg))}
+[data-palette="sage"]{--ink:#19221d;--bg:#eeece5;--surface:#fbfaf6;--line:#ddd8cb;--text:#1f2822;--muted:#626a5f;--accent:#42664f;--accent-soft:color-mix(in srgb,var(--accent) 9%,var(--bg))}
+[data-palette="lavender"]{--ink:#16142e;--bg:#eeedf5;--surface:#fbfafd;--line:#dedbec;--text:#1d1a35;--muted:#5f5c80;--accent:#5a4ad1;--accent-soft:color-mix(in srgb,var(--accent) 9%,var(--bg))}
+
+/* Панель подбора (слева внизу, чтобы не перекрывать кнопку Telegram) */
+.lab{position:fixed;left:16px;bottom:16px;z-index:100;width:300px;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);overflow:auto;background:#fff;border:1px solid #dfe3ec;border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.18);font:14px/1.4 system-ui,"Segoe UI",sans-serif;color:#1a1f2e}
+.lab-head{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;cursor:pointer;font-weight:700}
+.lab-body{padding:0 14px 14px}
+.lab.closed .lab-body{display:none}
+.lab h4{margin:10px 0 6px;font:600 12px system-ui;text-transform:uppercase;letter-spacing:.06em;color:#6b7280}
+.lab-sw{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.lab-sw button{height:40px;border-radius:10px;border:2px solid transparent;cursor:pointer;padding:0}
+.lab-sw button[aria-pressed="true"]{border-color:#111;outline:2px solid #fff;outline-offset:-4px}
+.lab-name{margin-top:4px;font-size:13px;color:#4b5563}
+.lab a{color:#2563eb}
+.lab-hex{float:right;font-family:Consolas,monospace;text-transform:none;letter-spacing:0;color:#1a1f2e}
+.lab-row{display:grid;grid-template-columns:100px 1fr;align-items:center;gap:8px;margin:4px 0;font-size:13px;color:#4b5563}
+.lab-row input[type=range]{width:100%}
+.lab-row input[type=color]{width:100%;height:30px;border:1px solid #e5e7eb;border-radius:6px;padding:2px;background:#fff}
+.lab-btns{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px}
+.lab-btns button{padding:8px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;cursor:pointer;font-size:13px}
+.lab-msg{font-size:12px;color:#4b5563;margin-top:6px;min-height:1em}
+.lab-anim{display:grid;gap:4px;font-size:13px}
+.lab-anim label{display:flex;gap:8px;align-items:center;cursor:pointer}
