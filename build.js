@@ -106,7 +106,6 @@ const chip = c => Array.isArray(c) ? `<a class="chip" href="${c[1]}">${c[0]}</a>
 function header(p) {
   const cur = p.group || p.city ? 'svc' : p.type === 'article' || p.path === '/baza-znaniy/' ? 'kb' : '';
   const mega = GROUPS.map(g => `<div class="mega-col"><a class="mega-title" href="${g.path}">${icon(g.icon, 'ico-sm')} ${g.name}</a>${svcOf(g.key).slice(0, 6).map(s => `<a href="${s.path}">${esc(s.menu || s.h1)}</a>`).join('')}${svcOf(g.key).length > 6 ? `<a class="mega-all" href="${g.path}">Все услуги раздела (${svcOf(g.key).length}) →</a>` : ''}</div>`).join('');
-  const cityLinks = cities.map(c => `<a href="${c.path}">${esc(c.menu)}</a>`).join('');
   const kbLinks = KB_CATS.filter(c => artOf(c).length).map(c => `<a href="/baza-znaniy/#${slug(c)}">${c}</a>`).join('');
   return `<header class="hdr"><div class="wrap hdr-in">
   <a class="logo" href="/" aria-label="I-Guide — на главную"><span class="logo-word"><span class="logo-i">ı<span class="logo-lens"></span></span><span class="logo-dash"></span>guide</span></a>
@@ -115,7 +114,7 @@ function header(p) {
     <li class="has-sub has-mega"><a class="nav-link" href="/uslugi/"${cur === 'svc' ? ' aria-current="true"' : ''}>Услуги</a><div class="sub mega">${mega}<a class="mega-sub" href="/podpiska/">${icon('check', 'ico-sm')} Услуги по ежемесячной подписке →</a></div></li>
     <li><a class="nav-link" href="/prodazhi-s-sajta/"${p.path === '/prodazhi-s-sajta/' ? ' aria-current="true"' : ''}>Продажи с сайта</a></li>
     <li class="has-sub"><a class="nav-link" href="/baza-znaniy/"${cur === 'kb' ? ' aria-current="true"' : ''}>База знаний</a><div class="sub">${kbLinks}</div></li>
-    <li class="has-sub"><a class="nav-link" href="/goroda/">Города</a><div class="sub">${cityLinks}</div></li>
+    <li><a class="nav-link" href="/faq/"${p.path === '/faq/' ? ' aria-current="true"' : ''}>FAQ</a></li>
     <li><a class="nav-link" href="/kontakty/">Контакты</a></li>
   </ul><a class="hdr-tg" ${tgAttrs} aria-label="Написать в Telegram" title="Написать в Telegram">${icon('tg', 'ico-tg')}</a><a class="hdr-tg hdr-wa" ${waAttrs} aria-label="Написать менеджеру в WhatsApp" title="Написать менеджеру в WhatsApp">${icon('wa', 'ico-tg')}</a><a class="btn btn-sm" href="/konsultaciya/#form">Получить консультацию</a></nav>
 </div></header>`;
@@ -132,12 +131,11 @@ function footer() {
       <p class="todo-inline">Контакты и реквизиты — заполняются</p></div>
     ${col('Продвижение', '/uslugi/', ['seo', 'geo', 'ads', 'serm'].flatMap(svcOf).map(s => [s.menu || s.h1, s.path]))}
     ${col('Сайты и продажи', '/uslugi/', ['sites', 'sales', 'audit'].flatMap(svcOf).map(s => [s.menu || s.h1, s.path]))}
-    ${col('Города', '/goroda/', cities.map(c => [c.menu, c.path]))}
+    ${col('Компания', '/faq/', [['FAQ — частые вопросы', '/faq/'], ['Документы', '/faq/#dokumenty'], ['Услуги по подписке', '/podpiska/'], ['Дорожная карта', '/doroznaya-karta/'], ['Консультация', '/konsultaciya/'], ['Контакты', '/kontakty/']])}
   </div>
   <div class="ftr-bottom"><span>© ${new Date().getFullYear()} I-Guide</span>
     <a href="/baza-znaniy/">База знаний</a>
-    <a href="/podpiska/">Услуги по подписке</a>
-    <a href="/doroznaya-karta/">Дорожная карта</a>
+    <a href="/faq/">FAQ</a>
     <a href="/politika-konfidencialnosti/">Политика обработки персональных данных</a>
     <a href="/soglasie-na-obrabotku/">Согласие на обработку ПДн</a>
     <a href="/karta-sayta/">Карта сайта</a></div>
@@ -260,7 +258,8 @@ function schema(p) {
   }
   if (p.type === 'article') graph.push({ '@type': 'Article', headline: p.h1, description: p.description, inLanguage: 'ru-RU', mainEntityOfPage: abs(p.path), dateModified: p.updated || site.updated, author: { '@id': abs('/#org') }, publisher: { '@id': abs('/#org') } });
   if (p.type === 'service') graph.push({ '@type': 'Service', name: p.h1, description: p.description, url: abs(p.path), provider: { '@type': 'Organization', name: site.name, url: abs('/') }, areaServed: p.city ? { '@type': 'City', name: p.city } : { '@type': 'Country', name: 'Россия' } });
-  if (p.faq && p.faq.length) graph.push({ '@type': 'FAQPage', mainEntity: p.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a.replace(/<[^>]+>/g, '') } })) });
+  const fq = p.faq || p.schemaFaq;
+  if (fq && fq.length) graph.push({ '@type': 'FAQPage', mainEntity: fq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a.replace(/<[^>]+>/g, '') } })) });
   if (!graph.length) return '';
   return `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })}</script>`;
 }
