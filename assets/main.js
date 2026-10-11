@@ -25,13 +25,17 @@ document.addEventListener('DOMContentLoaded', () => {
     ticking = false;
     const on = root.dataset.anim || '';
     if (on.includes('band')) bands.forEach(w => {
-      const p = progress(w.parentElement);
-      const o = Math.pow(Math.sin(p * Math.PI), 1.4);
-      w.style.setProperty('--x', ((0.5 - p) * 34).toFixed(2) + 'vw');
-      w.style.setProperty('--o', o.toFixed(3));
-      w.style.setProperty('--fill', (ease(clamp((p - .3) / .3)) * 110).toFixed(1) + '%');
-      w.style.setProperty('--ls', (0.18 * (1 - ease(clamp(p / .5)))).toFixed(3) + 'em');
-      w.style.setProperty('--b', ((1 - o) * 6).toFixed(2) + 'px');
+      // Закреплённая анимация: пока блок прилип к экрану, прокрутка двигает только логотип
+      const band = w.closest('.brand-band'), r = band.getBoundingClientRect(), vh = innerHeight;
+      const pinned = band.querySelector('.bb-stick') && r.height > vh * 1.2;
+      const p = pinned ? clamp(-r.top / (r.height - vh)) : progress(band);
+      const enter = pinned ? ease(clamp((vh - r.top) / vh)) : Math.pow(Math.sin(p * Math.PI), 1.4);
+      const move = ease(clamp(p / .75));
+      w.style.setProperty('--x', ((1 - move) * (pinned ? 55 : 17) - (pinned ? 0 : p * 17)).toFixed(2) + 'vw');
+      w.style.setProperty('--o', enter.toFixed(3));
+      w.style.setProperty('--fill', (ease(clamp((p - .3) / .55)) * 110).toFixed(1) + '%');
+      w.style.setProperty('--ls', (0.3 * (1 - ease(clamp(p / .7)))).toFixed(3) + 'em');
+      w.style.setProperty('--b', ((1 - enter) * 6).toFixed(2) + 'px');
     });
     if (on.includes('letters')) letters.forEach(box => {
       const p = progress(box), n = box.children.length;
