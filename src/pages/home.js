@@ -58,12 +58,12 @@ module.exports = {
 </div></section>
 
 <section class="sec sec-alt"><div class="wrap">
-  <div class="sec-head"><div class="kicker">Ещё разделы</div><h2>Всё остальное — в каталогах</h2><p>Бесплатные материалы, города, подписка и цены — в отдельных разделах.</p></div>
+  <div class="sec-head"><div class="kicker">Ещё разделы</div><h2>Всё остальное — в каталогах</h2><p>Бесплатные материалы, города, подписка, услуги и цены — в отдельных разделах.</p></div>
   <div class="cards cards-4">
     <a class="card" href="/baza-znaniy/">${icon('kb')}<h3>База знаний</h3><p>Как развивать сайт самостоятельно: SEO, карты, реклама, продажи, закон.</p><span class="more">${articles.length} ${pluralA(articles.length)} ${icon('arrow', 'ico-sm')}</span></a>
     <a class="card" href="/goroda/">${icon('geo')}<h3>Города</h3><p>Работаем по всей России, основное направление — Поволжье: ${cities.map(c => c.menu).join(', ')}.</p><span class="more">${cities.length} городов ${icon('arrow', 'ico-sm')}</span></a>
     <a class="card" href="/podpiska/">${icon('check')}<h3>Услуги по подписке</h3><p>Продвижение и поддержка каждый месяц: фиксированная оплата и отчёт по заявкам.</p><span class="more">${subCount} ${plural(subCount)} ${icon('arrow', 'ico-sm')}</span></a>
-    <a class="card" href="/ceny/">${icon('price')}<h3>Цены</h3><p>Стоимость продвижения, рекламы, создания и поддержки сайтов.</p><span class="more">Смотреть цены ${icon('arrow', 'ico-sm')}</span></a>
+    <a class="card" href="/uslugi/">${icon('price')}<h3>Услуги и цены</h3><p>Весь каталог: стоимость продвижения, рекламы, создания и поддержки сайтов.</p><span class="more">Смотреть каталог ${icon('arrow', 'ico-sm')}</span></a>
   </div>
 </div></section>
 

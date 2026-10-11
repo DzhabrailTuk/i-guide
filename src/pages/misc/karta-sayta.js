@@ -10,6 +10,6 @@ module.exports = {
     return `<h2><a href="/uslugi/">Услуги</a></h2>${GROUPS.map(g => `<h3>${g.name}</h3>${ul(svcOf(g.key))}`).join('')}
 <h2><a href="/goroda/">Города</a></h2>${ul(cities)}
 <h2><a href="/baza-znaniy/">База знаний</a></h2>${KB_CATS.filter(c => artOf(c).length).map(c => `<h3>${c}</h3>${ul(artOf(c))}`).join('')}
-<h2>Компания</h2><ul><li><a href="/ceny/">Цены</a></li><li><a href="/konsultaciya/">Консультация</a></li><li><a href="/kontakty/">Контакты</a></li></ul>`;
+<h2>Компания</h2><ul><li><a href="/konsultaciya/">Консультация</a></li><li><a href="/kontakty/">Контакты</a></li></ul>`;
   },
 };

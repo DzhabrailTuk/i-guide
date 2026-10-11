@@ -114,7 +114,6 @@ function header(p) {
   <nav class="nav" aria-label="Основное меню"><ul>
     <li class="has-sub has-mega"><a class="nav-link" href="/uslugi/"${cur === 'svc' ? ' aria-current="true"' : ''}>Услуги</a><div class="sub mega">${mega}<a class="mega-sub" href="/podpiska/">${icon('check', 'ico-sm')} Услуги по ежемесячной подписке →</a></div></li>
     <li><a class="nav-link" href="/prodazhi-s-sajta/"${p.path === '/prodazhi-s-sajta/' ? ' aria-current="true"' : ''}>Продажи с сайта</a></li>
-    <li><a class="nav-link" href="/ceny/"${p.path === '/ceny/' ? ' aria-current="true"' : ''}>Цены</a></li>
     <li class="has-sub"><a class="nav-link" href="/baza-znaniy/"${cur === 'kb' ? ' aria-current="true"' : ''}>База знаний</a><div class="sub">${kbLinks}</div></li>
     <li class="has-sub"><a class="nav-link" href="/goroda/">Города</a><div class="sub">${cityLinks}</div></li>
     <li><a class="nav-link" href="/kontakty/">Контакты</a></li>
@@ -137,7 +136,6 @@ function footer() {
   </div>
   <div class="ftr-bottom"><span>© ${new Date().getFullYear()} I-Guide</span>
     <a href="/baza-znaniy/">База знаний</a>
-    <a href="/ceny/">Цены</a>
     <a href="/podpiska/">Услуги по подписке</a>
     <a href="/doroznaya-karta/">Дорожная карта</a>
     <a href="/politika-konfidencialnosti/">Политика обработки персональных данных</a>
