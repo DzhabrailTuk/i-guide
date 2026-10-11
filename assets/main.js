@@ -25,10 +25,32 @@ document.addEventListener('DOMContentLoaded', () => {
     ticking = false;
     const on = root.dataset.anim || '';
     if (on.includes('band')) bands.forEach(w => {
-      // Закреплённая анимация: пока блок прилип к экрану, прокрутка двигает только логотип
+      // Закреплённая анимация: пока блок прилип к экрану, прокрутка собирает логотип
       const band = w.closest('.brand-band'), r = band.getBoundingClientRect(), vh = innerHeight;
       const pinned = band.querySelector('.bb-stick') && r.height > vh * 1.2;
       const p = pinned ? clamp(-r.top / (r.height - vh)) : progress(band);
+      if (w.classList.contains('bb-split')) {
+        // 1) «I» едет слева, «Guide» справа — встречаются в центре
+        const t = clamp(p / .45), m = 1 - Math.pow(1 - t, 3);
+        // 2) дефис падает сверху с ускорением, ударяется и чуть отскакивает
+        const d = clamp((p - .4) / .35), fall = .72;
+        const dy = d < fall ? -(1 - Math.pow(d / fall, 2)) : -.06 * Math.sin(Math.PI * (d - fall) / (1 - fall));
+        const hit = d > 0 ? Math.exp(-Math.pow((d - fall) / .07, 2)) : 0;
+        // 3) контур заливается цветом
+        const f = ease(clamp((p - .72) / .23));
+        const set = (k, v) => w.style.setProperty(k, v);
+        set('--ix', (-(1 - m) * 62 - hit * .8).toFixed(2) + 'vw');
+        set('--gx', ((1 - m) * 62 + hit * .8).toFixed(2) + 'vw');
+        set('--so', clamp(t * 3).toFixed(3));
+        set('--sb', ((1 - m) * 6).toFixed(2) + 'px');
+        set('--dy', (dy * 70).toFixed(2) + 'vh');
+        set('--dr', (-(1 - clamp(d / fall)) * 35).toFixed(1) + 'deg');
+        set('--dop', d > 0 ? '1' : '0');
+        set('--dsx', (1 + hit * .28).toFixed(3));
+        set('--dsy', (1 - hit * .32).toFixed(3));
+        set('--f', f.toFixed(3));
+        return;
+      }
       const enter = pinned ? ease(clamp((vh - r.top) / vh)) : Math.pow(Math.sin(p * Math.PI), 1.4);
       const move = ease(clamp(p / .75));
       w.style.setProperty('--x', ((1 - move) * (pinned ? 55 : 17) - (pinned ? 0 : p * 17)).toFixed(2) + 'vw');

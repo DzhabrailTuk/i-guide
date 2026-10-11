@@ -791,3 +791,13 @@ html .faq-group{margin:0 0 36px}
 html .faq-docs{margin-top:12px}
 html .faq-docs .cat-list{margin-top:16px}
 html .faq-docs .cat-list{grid-template-columns:repeat(2,1fr)} @media (max-width:560px){html .faq-docs .cat-list{grid-template-columns:1fr}}
+
+/* ===== Логотип собирается: «I» слева, «Guide» справа, дефис падает сверху ===== */
+html .bb-split{display:flex;justify-content:center;align-items:baseline;width:100%;padding:0;letter-spacing:-.01em;
+  font-size:clamp(64px,19vw,300px);color:inherit;background:none;-webkit-text-stroke:0;transform:none;filter:none;opacity:1}
+html .bb-p{display:inline-block;color:color-mix(in srgb,var(--accent) calc(var(--f,1) * 100%),transparent);
+  -webkit-text-stroke:1.5px color-mix(in srgb,var(--accent) 65%,transparent);will-change:transform,opacity,filter}
+html .bb-i{transform:translate3d(var(--ix,0),0,0);opacity:var(--so,1);filter:blur(var(--sb,0px))}
+html .bb-guide{transform:translate3d(var(--gx,0),0,0);opacity:var(--so,1);filter:blur(var(--sb,0px))}
+html .bb-dash{transform-origin:50% 100%;opacity:var(--dop,1);
+  transform:translate3d(0,var(--dy,0),0) rotate(var(--dr,0deg)) scale(var(--dsx,1),var(--dsy,1))}

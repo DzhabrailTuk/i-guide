@@ -49,7 +49,7 @@ module.exports = {
   <p class="home-more"><a class="btn btn-light" href="/prodazhi-s-sajta/">Как мы увеличиваем продажи через сайт ${icon('arrow', 'ico-sm')}</a></p>
 </div></section>
 
-<div class="brand-band" aria-hidden="true"><div class="bb-stick"><span class="bb-word">I-Guide</span></div></div>
+<div class="brand-band" aria-hidden="true"><div class="bb-stick"><span class="bb-word bb-split"><span class="bb-p bb-i">I</span><span class="bb-p bb-dash">-</span><span class="bb-p bb-guide">Guide</span></span></div></div>
 
 <section class="sec"><div class="wrap">
   <div class="sec-head"><div class="kicker">Дорожная карта</div><h2>Путь от идеи сайта до продаж</h2><p>Бизнес готов платить за продвижение, когда понимает, откуда возьмутся продажи. Вот весь путь — от первой мысли о сайте до заявок из поиска.</p></div>
