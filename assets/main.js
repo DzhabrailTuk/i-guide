@@ -200,3 +200,16 @@ document.addEventListener('DOMContentLoaded', () => {
   f.forEach(function(el){io.observe(el);});
   setTimeout(function(){f.forEach(function(el){if(el.getBoundingClientRect().top<innerHeight)el.classList.add('in');});},50);
 })();
+
+// Каталог услуг: кнопка «Раскрыть / Свернуть все разделы»
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.cat-toggle-all');
+  if (!btn) return;
+  const groups = [...document.querySelectorAll('.cat-group')];
+  const sync = () => { const all = groups.every(g => g.open); btn.textContent = all ? 'Свернуть все разделы' : 'Раскрыть все разделы'; btn.dataset.open = all ? '1' : '0'; };
+  btn.addEventListener('click', () => { const open = btn.dataset.open !== '1'; groups.forEach(g => { g.open = open; }); sync(); });
+  groups.forEach(g => g.addEventListener('toggle', sync));
+  // переход по ссылке /uslugi/#seo — раскрыть нужный раздел
+  const h = location.hash && document.querySelector('.cat-group' + location.hash);
+  if (h) h.open = true;
+});
