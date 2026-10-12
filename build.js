@@ -25,6 +25,30 @@ GROUPS.forEach(g => { g.path = '/uslugi/' + g.key + '/'; });
 for (const g of GROUPS) pages.push({ path: g.path, type: 'hub', groupHub: g.key, title: g.title, description: g.description, h1: g.h1, lead: g.lead, crumbs: [['Услуги', '/uslugi/']],
   body: ({ svcOf, card, articles, B }) => g.intro + '<h2 id="uslugi">Услуги раздела</h2><div class="cards cards-2">' + svcOf(g.key).map(s => card(s)).join('') + '</div>'
     + (() => { const set = new Set(svcOf(g.key).map(s => s.path)); const a = articles.filter(x => set.has(x.service)); return a.length ? '<h2 id="stati">Полезные материалы</h2>' + B.articles(a.slice(0, 6)) : ''; })() });
+// ---------- дополнительные тексты страниц: src/content/<путь>.js → { sections, html, faq } ----------
+// sections — для услуг и городов (встают перед блоком «Стоимость»), html — в конец статьи/раздела, faq — к вопросам страницы
+const CONTENT_DIR = path.join(ROOT, 'src', 'content');
+const contentKey = u => u.replace(/^\/|\/$/g, '').replace(/\//g, '__') || 'home';
+for (const p of pages) {
+  const f = path.join(CONTENT_DIR, contentKey(p.path) + '.js');
+  if (!fs.existsSync(f)) continue;
+  const c = require(f);
+  if (c.faq) p.faq = [...(p.faq || []), ...c.faq];
+  if (c.sections && p.type === 'service') {
+    const orig = p.sections;
+    p.sections = ctx => {
+      const base = [...(typeof orig === 'function' ? orig(ctx) : orig || [])];
+      const add = (typeof c.sections === 'function' ? c.sections(ctx) : c.sections).map(([id, h2, html, intro]) => [id, h2, `<div class="prose">${html}</div>`, intro]);
+      const at = base.findIndex(s => s[0] === 'stoimost');
+      base.splice(at < 0 ? base.length : at, 0, ...add);
+      return base;
+    };
+  }
+  if (c.html && p.type !== 'service') {
+    const ob = p.body;
+    p.body = ctx => (typeof ob === 'function' ? ob(ctx) : ob) + `<div class="prose">${typeof c.html === 'function' ? c.html(ctx) : c.html}</div>`;
+  }
+}
 const byPath = Object.fromEntries(pages.filter(p => !p.file).map(p => [p.path, p]));
 const services = pages.filter(p => p.type === 'service' && p.group).sort((a, b) => (a.order || 0) - (b.order || 0));
 const cities = pages.filter(p => p.type === 'service' && p.city).sort((a, b) => (a.order || 0) - (b.order || 0));
