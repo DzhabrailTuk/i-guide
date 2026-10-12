@@ -211,6 +211,8 @@ function render(p) {
   ${side}
 </div>${rel.length ? `<div class="wrap"><section class="related"><h2>Читайте также</h2>${B.articles(rel)}</section></div>` : ''}`;
   }
+  // таблицы прокручиваются внутри себя, а не растягивают страницу на телефоне
+  main = main.replace(/<table\b/g, '<div class="table-wrap"><table').replace(/<\/table>/g, '</table></div>');
   const isArticle = p.type === 'article';
 
   return `<!doctype html>
@@ -228,6 +230,10 @@ ${p.noindex ? '<meta name="robots" content="noindex, follow">' : ''}
 <meta property="og:description" content="${esc(p.description)}">
 <meta property="og:url" content="${abs(p.path)}">
 <meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="${abs('/assets/og.png')}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/style.css?v=${V}">
 <link rel="stylesheet" href="/assets/style-iguide.css?v=${V}">

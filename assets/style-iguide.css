@@ -801,3 +801,4 @@ html .bb-i{transform:translate3d(var(--ix,0),0,0);opacity:var(--so,1);filter:blu
 html .bb-guide{transform:translate3d(var(--gx,0),0,0);opacity:var(--so,1);filter:blur(var(--sb,0px))}
 html .bb-dash{transform-origin:50% 100%;opacity:var(--dop,1);
   transform:translate3d(0,var(--dy,0),0) rotate(var(--dr,0deg)) scale(var(--dsx,1),var(--dsy,1))}
+html .table-wrap{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 24px}html .table-wrap>table{margin:0}
