@@ -46,7 +46,8 @@ for (const p of pages) {
   }
   if (c.html && p.type !== 'service') {
     const ob = p.body;
-    p.body = ctx => (typeof ob === 'function' ? ob(ctx) : ob) + `<div class="prose">${typeof c.html === 'function' ? c.html(ctx) : c.html}</div>`;
+    const wrap = h => p.type === 'raw' ? `<section class="sec"><div class="wrap"><div class="prose">${h}</div>${p.faq && p.faq.length ? faqHtml(p.faq) : ''}</div></section>` : `<div class="prose">${h}</div>`;
+    p.body = ctx => (typeof ob === 'function' ? ob(ctx) : ob) + wrap(typeof c.html === 'function' ? c.html(ctx) : c.html);
   }
 }
 const byPath = Object.fromEntries(pages.filter(p => !p.file).map(p => [p.path, p]));
