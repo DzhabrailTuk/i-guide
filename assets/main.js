@@ -235,3 +235,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const h = location.hash && document.querySelector('.cat-group' + location.hash);
   if (h) h.open = true;
 });
+
+// Концепция «Журнальный»: блоки мягко проявляются при прокрутке, курсивная строка заголовка «пишется» слева направо
+document.addEventListener('DOMContentLoaded', () => {
+  const root = document.documentElement;
+  if (root.dataset.concept !== 'editorial' || !('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const els = [...document.querySelectorAll('.sec-head, .cards > *, .rm-teaser > *, .audit-promo, .svc-sec .sec-head, .step, .cat-group, .content > h2, .faq details')];
+  els.forEach((e, i) => { e.classList.add('ed-r'); e.style.transitionDelay = (i % 3) * 90 + 'ms'; });
+  root.classList.add('ed-js');
+  requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add('ed-ready')));
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('ed-in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  els.forEach(e => io.observe(e));
+  // страховка: всё, что уже на экране или выше, показываем сразу и при любой прокрутке
+  els.forEach(e => { if (e.getBoundingClientRect().top < innerHeight) e.classList.add('ed-in'); });
+  addEventListener('scroll', () => els.forEach(e => { if (!e.classList.contains('ed-in') && e.getBoundingClientRect().top < innerHeight) e.classList.add('ed-in'); }), { passive: true });
+});

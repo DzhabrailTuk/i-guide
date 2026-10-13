@@ -77,7 +77,6 @@ html[data-concept="editorial"] .btn-ghost:hover,html[data-concept="editorial"] .
 html[data-concept="editorial"] .nav .btn-sm{border-radius:999px;background:var(--ink);color:#fff}
 html[data-concept="editorial"] .hero-chips{border-top:1px solid var(--ink)}
 html[data-concept="editorial"] .hero-chips .chip{border-right-color:var(--line);font:italic 400 19px/1.2 "Playfair Display",Georgia,serif}
-html[data-concept="editorial"] .sec .sec-head h2::before,html[data-concept="editorial"] .sec-alt .sec-head h2::before{counter-increment:secnum;content:counter(secnum,decimal-leading-zero);display:block;font:italic 400 .62em/1 "Playfair Display",Georgia,serif;color:var(--accent);margin-bottom:.25em}
 html[data-concept="editorial"] .kicker{color:var(--ink);letter-spacing:.24em}
 html[data-concept="editorial"] .kicker::after{background:var(--ink)}
 html[data-concept="editorial"] .sec-alt{background:var(--tint)}
@@ -152,3 +151,29 @@ html[data-concept="bento"] .cat-group,html[data-concept="bento"] .faq details{bo
   html[data-concept="dark"] .hdr,html[data-concept="dark"] .nav{background:#0c0a0b}
   html[data-concept="bento"] .hdr,html[data-concept="bento"] .nav{background:#f5f3f4}
 }
+
+/* ---- «Журнальный»: доводка по всем страницам ---- */
+html[data-concept="editorial"] .sec .kicker::before{font:italic 400 30px/1 "Playfair Display",Georgia,serif;letter-spacing:0;color:var(--accent);margin-right:4px}
+html[data-concept="editorial"] .sec-head h2,html[data-concept="editorial"] .page-hero h1,html[data-concept="editorial"] .svc-hero h1{letter-spacing:-.03em}
+html[data-concept="editorial"] .page-hero,html[data-concept="editorial"] .svc-hero{background:var(--bg);border-bottom:1px solid var(--ink)}
+html[data-concept="editorial"] .page-hero::after,html[data-concept="editorial"] .svc-hero::after,html[data-concept="editorial"] .svc-hero::before{display:none}
+html[data-concept="editorial"] .page-hero .lead,html[data-concept="editorial"] .svc-hero .lead{border-left:3px solid var(--accent);padding-left:20px}
+html[data-concept="editorial"] .svc-hero .hero-chips{display:flex;flex-wrap:wrap;gap:6px 26px;margin:34px 0 0;border:0;grid-template-columns:none}
+html[data-concept="editorial"] .svc-hero .hero-chips .chip{background:none;border:0;border-bottom:1px solid var(--line);padding:4px 0;min-height:0;font:italic 400 19px/1.3 "Playfair Display",Georgia,serif;color:var(--ink)}
+html[data-concept="editorial"] .svc-hero a.chip:hover{color:var(--accent);border-bottom-color:var(--accent);background:none}
+html[data-concept="editorial"] .eyebrow{border-radius:999px}
+html[data-concept="editorial"] .step h3,html[data-concept="editorial"] .content h2{letter-spacing:-.02em}
+html[data-concept="editorial"] .content h2{font-weight:900}
+html[data-concept="editorial"] .faq summary{font-size:18px}
+html[data-concept="editorial"] .bb-p{-webkit-text-stroke-color:var(--ink)}
+html[data-concept="editorial"] .bb-guide{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.01em}
+@media (max-width:600px){
+  html[data-concept="editorial"] .hero h1{font-size:clamp(32px,9.6vw,44px)}
+  html[data-concept="editorial"] .hero .lead{font-size:18px}
+}
+/* плавное появление блоков при прокрутке (включается скриптом, без JS всё видно сразу) */
+html[data-concept="editorial"].ed-js .ed-r{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+html[data-concept="editorial"].ed-js .ed-r.ed-in{opacity:1;transform:none}
+html[data-concept="editorial"].ed-js .hero h1 em{display:block;clip-path:inset(0 100% 0 0);transition:clip-path 1.4s cubic-bezier(.6,0,.2,1) .25s}
+html[data-concept="editorial"].ed-js.ed-ready .hero h1 em{clip-path:inset(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){html[data-concept="editorial"].ed-js .ed-r{opacity:1;transform:none;transition:none}html[data-concept="editorial"].ed-js .hero h1 em{clip-path:none}}
