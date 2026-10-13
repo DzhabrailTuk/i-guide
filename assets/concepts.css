@@ -177,3 +177,25 @@ html[data-concept="editorial"].ed-js .ed-r.ed-in{opacity:1;transform:none}
 html[data-concept="editorial"].ed-js .hero h1 em{display:block;clip-path:inset(0 100% 0 0);transition:clip-path 1.4s cubic-bezier(.6,0,.2,1) .25s}
 html[data-concept="editorial"].ed-js.ed-ready .hero h1 em{clip-path:inset(0 0 0 0)}
 @media (prefers-reduced-motion:reduce){html[data-concept="editorial"].ed-js .ed-r{opacity:1;transform:none;transition:none}html[data-concept="editorial"].ed-js .hero h1 em{clip-path:none}}
+
+/* ===== Предпросмотр спокойных шрифтов (?font=a..f) — один шрифт на весь сайт, без курсива с засечками ===== */
+html[data-font] body,html[data-font] body *:not(svg):not(path):not(.font-panel button){font-family:var(--pick)!important}
+html[data-font] body em,html[data-font] body i:not(.formula i),html[data-font] .hero h1 em{font-style:normal!important}
+html[data-font] .hero h1 em{display:inline!important;font-size:1em!important;margin:0!important;letter-spacing:inherit!important}
+html[data-font] h1,html[data-font] h2,html[data-font] .sec-head h2{font-weight:700!important;letter-spacing:-.015em!important}
+html[data-font] .hero h1{line-height:1.12!important}
+html[data-font] h3,html[data-font] .card h3,html[data-font] .card-main h3,html[data-font] .formula b,html[data-font] .rm-teaser b,html[data-font] .hero-chips .chip,html[data-font] .svc-hero .hero-chips .chip{font-weight:700!important;font-style:normal!important;letter-spacing:-.01em!important}
+html[data-font] .card-main h3{font-size:clamp(28px,3vw,40px)!important}
+html[data-font] .formula b{font-size:24px!important}
+html[data-font] .sec .kicker::before{font-style:normal!important;font-size:14px!important;font-weight:700}
+html[data-font] .bb-guide{font-style:normal!important;font-weight:700!important}
+.font-panel{position:fixed;left:16px;bottom:16px;z-index:999;display:flex;flex-wrap:wrap;gap:6px;align-items:center;max-width:min(560px,calc(100vw - 32px));padding:10px 12px;background:#141010;color:#fff;border-radius:14px;box-shadow:0 14px 40px -12px rgba(0,0,0,.5);font:600 13px/1.2 system-ui,sans-serif}
+.font-panel b{margin-right:4px}
+.font-panel button{border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;border-radius:999px;padding:8px 12px;font-size:13px;cursor:pointer}
+.font-panel button.on{background:#821f30;border-color:#821f30}
+html[data-font] .hero h1{font-size:clamp(34px,5vw,68px)!important;max-width:980px}
+html[data-font] .hero h1 em{font-weight:inherit!important}
+html[data-font] .card-main p{font-weight:400!important}
+.font-panel{padding:8px 10px;gap:5px;font-size:12px}
+.font-panel button{padding:6px 10px;font-size:12px}
+html[data-font] .hero h1 em{clip-path:none!important;transition:none!important}

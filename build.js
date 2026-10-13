@@ -263,6 +263,7 @@ ${p.noindex ? '<meta name="robots" content="noindex, follow">' : ''}
 <link rel="stylesheet" href="/assets/style.css?v=${V}">
 <link rel="stylesheet" href="/assets/style-iguide.css?v=${V}">
 <link rel="stylesheet" href="/assets/concepts.css?v=${V}">
+<script src="/assets/font-preview.js?v=${V}"></script>
 <script>try{var q=new URLSearchParams(location.search).get('concept');if(q!==null)sessionStorage.setItem('ig-concept',q);var c=sessionStorage.getItem('ig-concept');if(c)document.documentElement.setAttribute('data-concept',c)}catch(e){}</script>
 <link rel="preload" href="/assets/fonts/nunito-sans-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 ${site.designLab ? `<link rel="stylesheet" href="/assets/themes.css?v=${V}">
