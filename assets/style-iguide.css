@@ -811,3 +811,8 @@ html .prose ul,html .prose ol{padding-left:22px;margin:0 0 18px}
 html .prose li{margin:7px 0}
 html .prose a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 html .content .prose{max-width:none}
+
+/* ловушка для ботов в формах заявки: людям не видна */
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+html .form-msg.form-ok{color:#11603d}
+html .form-lead{position:relative}

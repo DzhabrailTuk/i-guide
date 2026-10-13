@@ -1,5 +1,10 @@
 {
   "name": "i-guide-site",
   "private": true,
-  "scripts": { "build": "node build.js", "start": "node build.js && node serve.js" }
+  "scripts": {
+    "build": "node build.js",
+    "start": "node build.js && node serve.js",
+    "crm": "node crm/server.js",
+    "dev": "node build.js --crm=http://localhost:4400/api/lead && node serve.js"
+  }
 }

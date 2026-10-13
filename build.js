@@ -112,7 +112,8 @@ const B = {
   stat: rows => `<table class="stat"><tr><th>Запрос</th><th>Ищут в месяц</th></tr>${rows.map(([q, n]) => `<tr><td>${q}</td><td>${n}</td></tr>`).join('')}</table><p class="src">Данные Яндекс Вордстата, сентябрь–октябрь 2026.</p>`,
 };
 function leadForm(service = '') {
-  return `<form class="form form-lead" data-lead novalidate>
+  return `<form class="form form-lead" data-lead${site.crmUrl ? ` data-endpoint="${esc(site.crmUrl)}"` : ''} novalidate>
+  <div class="hp" aria-hidden="true"><label>Сайт компании<input name="company_website" tabindex="-1" autocomplete="off"></label></div>
   ${service ? `<input type="hidden" name="service" value="${esc(service)}">` : ''}
   <div class="form-row"><label>Имя<input name="name" autocomplete="name" required></label>
   <label>Телефон или мессенджер<input name="contact" required></label></div>

@@ -1,4 +1,16 @@
-// Мобильное меню и заглушка формы (отправка заявок подключается после ответа владельца).
+(function () {
+  try {
+    if (sessionStorage.getItem('ig-ref') !== null) return;
+    const q = new URLSearchParams(location.search), utm = {};
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'yclid'].forEach(k => { if (q.get(k)) utm[k] = q.get(k).slice(0, 100); });
+    let ref = '';
+    try { ref = document.referrer && new URL(document.referrer).host !== location.host ? new URL(document.referrer).host : ''; } catch (e) {}
+    sessionStorage.setItem('ig-ref', ref || (Object.keys(utm).length ? '' : 'прямой заход'));
+    if (Object.keys(utm).length) sessionStorage.setItem('ig-utm', JSON.stringify(utm));
+  } catch (e) {}
+})();
+
+// Мобильное меню и отправка заявок в CRM (отправка заявок подключается после ответа владельца).
 document.addEventListener('DOMContentLoaded', () => {
   const burger = document.querySelector('.burger');
   const nav = document.querySelector('.nav');
@@ -6,10 +18,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const open = nav.classList.toggle('open');
     burger.setAttribute('aria-expanded', open);
   });
-  document.querySelectorAll('form[data-lead]').forEach(f => f.addEventListener('submit', e => {
+  document.querySelectorAll('form[data-lead]').forEach(f => f.addEventListener('submit', async e => {
     e.preventDefault();
     const msg = f.querySelector('.form-msg');
-    if (msg) { msg.style.display = 'block'; msg.textContent = 'Форма в тестовом режиме: отправка заявок ещё не подключена.'; }
+    const say = (t, ok) => { if (msg) { msg.style.display = 'block'; msg.textContent = t; msg.classList.toggle('form-ok', !!ok); } };
+    const url = f.dataset.endpoint;
+    if (!url) return say('Форма в тестовом режиме: отправка заявок ещё не подключена.');
+    if (!f.checkValidity()) { f.reportValidity(); return; }
+    const data = Object.fromEntries(new FormData(f));
+    data.consent = !!f.querySelector('[name=consent]')?.checked;
+    data.page = location.pathname;
+    try { data.utm = JSON.parse(sessionStorage.getItem('ig-utm') || 'null') || undefined; data.source = sessionStorage.getItem('ig-ref') || ''; } catch (err) {}
+    const btn = f.querySelector('button[type=submit]');
+    if (btn) btn.disabled = true;
+    try {
+      const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      const res = await r.json().catch(() => ({}));
+      if (r.ok && res.ok) { say('Спасибо! Заявка отправлена — мы свяжемся с вами.', true); f.reset(); }
+      else say(res.error || 'Не удалось отправить заявку. Напишите нам в Telegram.');
+    } catch (err) { say('Не удалось отправить заявку. Напишите нам в Telegram.'); }
+    finally { if (btn) btn.disabled = false; }
   }));
 });
 
