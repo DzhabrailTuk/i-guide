@@ -111,10 +111,10 @@ const B = {
   articles: (list, more = 'Читать') => `<div class="cards cards-3">${list.map(a => card(typeof a === 'string' ? byPath[a] : a, more)).join('')}</div>`,
   stat: rows => `<table class="stat"><tr><th>Запрос</th><th>Ищут в месяц</th></tr>${rows.map(([q, n]) => `<tr><td>${q}</td><td>${n}</td></tr>`).join('')}</table><p class="src">Данные Яндекс Вордстата, сентябрь–октябрь 2026.</p>`,
 };
-function leadForm(service = '') {
+function leadForm(service = '', category = '', city = '') {
   return `<form class="form form-lead" data-lead${site.crmUrl ? ` data-endpoint="${esc(site.crmUrl)}"` : ''} novalidate>
   <div class="hp" aria-hidden="true"><label>Сайт компании<input name="company_website" tabindex="-1" autocomplete="off"></label></div>
-  ${service ? `<input type="hidden" name="service" value="${esc(service)}">` : ''}
+  ${service ? `<input type="hidden" name="service" value="${esc(service)}">` : ''}${category ? `<input type="hidden" name="category" value="${esc(category)}">` : ''}${city ? `<input type="hidden" name="city" value="${esc(city)}">` : ''}
   <div class="form-row"><label>Имя<input name="name" autocomplete="name" required></label>
   <label>Телефон или мессенджер<input name="contact" required></label></div>
   <label>Сайт (если есть)<input name="site" placeholder="https://"></label>
@@ -207,7 +207,7 @@ function serviceLayout(p, sections) {
 ${secs}
 ${p.faq && p.faq.length ? `<section class="svc-sec"><div class="wrap narrow">${faqHtml(p.faq)}</div></section>` : ''}
 ${rel.length ? `<section class="svc-sec svc-alt"><div class="wrap"><div class="sec-head"><h2>Полезно почитать</h2><p>Бесплатные материалы из базы знаний I-Guide по этой теме.</p></div>${B.articles(rel)}</div></section>` : ''}
-<section class="svc-sec svc-lead" id="zayavka"><div class="wrap lead-in"><div><h2>Оставить заявку</h2><p>Расскажите о бизнесе и задаче — ответим и предложим, с чего начать.</p></div>${leadForm(p.h1)}</div></section>`;
+<section class="svc-sec svc-lead" id="zayavka"><div class="wrap lead-in"><div><h2>Оставить заявку</h2><p>Расскажите о бизнесе и задаче — ответим и предложим, с чего начать.</p></div>${leadForm(p.h1, g ? g.name : '', p.city || '')}</div></section>`;
 }
 
 function articleSidebar(p) {
