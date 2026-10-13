@@ -1,0 +1,154 @@
+/* ===== Концепции редизайна (временный файл для выбора) =====
+   Включаются параметром ?concept=dark | editorial | bento — по умолчанию сайт не меняется.
+   После выбора нужный вариант переносится в style-iguide.css, а этот файл удаляется. */
+
+/* ---------- 1. «Тёмный премиум»: глубокий тёмный фон, бордовое свечение, золотые акценты ---------- */
+html[data-concept="dark"]{
+  --bg:#0c0a0b; --surface:#141112; --tint:#171314; --line:rgba(255,255,255,.09);
+  --text:#ece8e6; --muted:#a69f9c; --ink:#ffffff; --gold:#e3b98c;
+  --accent:#a3253b; --accent-soft:rgba(163,37,59,.16); --accent-2:#c23a52;
+  color-scheme:dark;
+}
+html[data-concept="dark"] body{background:var(--bg);color:var(--text)}
+html[data-concept="dark"] .hdr{background:rgba(12,10,11,.72);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border-bottom-color:var(--line)}
+html[data-concept="dark"] .logo-word,html[data-concept="dark"] .nav-link{color:#fff}
+html[data-concept="dark"] .nav-link:hover,html[data-concept="dark"] .nav-link[aria-current]{color:var(--gold)}
+html[data-concept="dark"] .sub,html[data-concept="dark"] .sub.mega{background:#141112;border-color:var(--line)}
+html[data-concept="dark"] .sub a{color:var(--text)}
+html[data-concept="dark"] .hero{background:radial-gradient(900px 520px at 78% 18%,rgba(163,37,59,.42),transparent 60%),radial-gradient(700px 400px at 8% 90%,rgba(227,185,140,.10),transparent 60%),var(--bg);border-bottom-color:var(--line)}
+html[data-concept="dark"] .hero::after{opacity:.35}
+html[data-concept="dark"] .hero::before{opacity:.25;filter:invert(1)}
+html[data-concept="dark"] .hero h1{color:#fff}
+html[data-concept="dark"] .hero h1 em{background:linear-gradient(95deg,#ff6b84,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+html[data-concept="dark"] .hero .lead,html[data-concept="dark"] .hero-hint{color:var(--muted)}
+html[data-concept="dark"] .tagline{background:rgba(255,255,255,.04);border-color:rgba(227,185,140,.35)}
+html[data-concept="dark"] .tl-main{color:#fff}
+html[data-concept="dark"] .btn{background:linear-gradient(135deg,#a3253b,#6e1324);color:#fff;box-shadow:0 10px 40px -10px rgba(163,37,59,.8)}
+html[data-concept="dark"] .btn:hover{background:linear-gradient(135deg,#bd2f47,#821f30);box-shadow:0 14px 50px -8px rgba(194,58,82,.9)}
+html[data-concept="dark"] .btn-ghost,html[data-concept="dark"] .btn-light,html[data-concept="dark"] .nav .btn-sm{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.16);box-shadow:none}
+html[data-concept="dark"] .hero-chips{border-top-color:var(--line)}
+html[data-concept="dark"] .hero-chips .chip{color:#fff;border-right-color:var(--line);background:transparent}
+html[data-concept="dark"] .hero a.chip:hover{background:var(--accent)}
+html[data-concept="dark"] .sec-alt,html[data-concept="dark"] .svc-alt{background:#100d0e}
+html[data-concept="dark"] h1,html[data-concept="dark"] h2,html[data-concept="dark"] h3,html[data-concept="dark"] .sec-head h2{color:#fff}
+html[data-concept="dark"] .sec-head p,html[data-concept="dark"] .card p{color:var(--muted)}
+html[data-concept="dark"] .kicker{color:var(--gold)}
+html[data-concept="dark"] .card{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));border-color:var(--line);color:var(--text)}
+html[data-concept="dark"] a.card:hover{background:linear-gradient(180deg,rgba(163,37,59,.28),rgba(163,37,59,.08));border-color:rgba(194,58,82,.6);color:#fff}
+html[data-concept="dark"] .card .ico{color:var(--gold)}
+html[data-concept="dark"] .card .more{color:var(--gold);border-top-color:var(--line)}
+html[data-concept="dark"] .card-main{background:linear-gradient(150deg,#3a0f18,#160b0e 70%);border-color:rgba(194,58,82,.5)}
+html[data-concept="dark"] a.card.card-all{background:linear-gradient(135deg,var(--gold),#b8875c);border-color:var(--gold);color:#1a1012}
+html[data-concept="dark"] a.card.card-all h3,html[data-concept="dark"] a.card.card-all p,html[data-concept="dark"] a.card.card-all .more,html[data-concept="dark"] a.card.card-all .ico{color:#1a1012}
+html[data-concept="dark"] .formula>div{background:#151213;border-color:var(--line)}
+html[data-concept="dark"] .formula b{color:#fff}
+html[data-concept="dark"] .formula i{background:#1d1718;border-color:var(--line);color:var(--gold)}
+html[data-concept="dark"] .formula .formula-res{background:linear-gradient(135deg,#a3253b,#5e101e);box-shadow:0 20px 60px -20px rgba(163,37,59,.9)}
+html[data-concept="dark"] .bb-p{-webkit-text-stroke-color:rgba(227,185,140,.55)}
+html[data-concept="dark"] .brand-band{border-bottom-color:var(--line)}
+html[data-concept="dark"] .rm-teaser a{color:var(--text)}
+html[data-concept="dark"] .rm-teaser span{background:#151213;color:var(--gold);border-color:rgba(227,185,140,.4)}
+html[data-concept="dark"] .rm-teaser small{color:var(--muted)}
+html[data-concept="dark"] .audit-promo{background:linear-gradient(120deg,#1a0d11,#0f0b0c);border:1px solid rgba(227,185,140,.25)}
+html[data-concept="dark"] .cta-band{background:linear-gradient(120deg,#5e101e,#a3253b 60%,#c23a52)}
+html[data-concept="dark"] .ftr{background:#080607}
+html[data-concept="dark"] .float-contacts .wa-float{background:#141112}
+html[data-concept="dark"] .crumbs,html[data-concept="dark"] .crumbs a{color:var(--muted)}
+html[data-concept="dark"] .prose,html[data-concept="dark"] .content{color:var(--text)}
+html[data-concept="dark"] .faq details{border-color:var(--line)}
+html[data-concept="dark"] .todo{background:rgba(227,185,140,.06);color:var(--gold);border-color:rgba(227,185,140,.4)}
+
+/* ---------- 2. «Журнальный»: тёплая бумага, крупная типографика, курсивные засечки, номера разделов ---------- */
+html[data-concept="editorial"]{
+  --bg:#f3efe8; --surface:#faf7f2; --tint:#efe9df; --line:#d9d1c4; --text:#1b1716; --muted:#5d544f; --ink:#141010;
+}
+html[data-concept="editorial"] body{background:var(--bg);counter-reset:secnum}
+html[data-concept="editorial"] .hdr{background:rgba(243,239,232,.9);border-bottom:1px solid var(--ink)}
+html[data-concept="editorial"] .hero{background:var(--bg);border-bottom:1px solid var(--ink)}
+html[data-concept="editorial"] .hero::after,html[data-concept="editorial"] .hero::before{display:none}
+html[data-concept="editorial"] .hero h1{font-size:clamp(44px,7.2vw,112px);line-height:.98;letter-spacing:-.035em;max-width:1200px}
+html[data-concept="editorial"] .hero h1 em{display:block;font:italic 400 1.04em/1 "Playfair Display",Georgia,serif;letter-spacing:-.01em;color:var(--accent);margin-top:.08em}
+html[data-concept="editorial"] .hero .lead{font-size:21px;max-width:620px;border-left:3px solid var(--accent);padding-left:22px}
+html[data-concept="editorial"] .tagline{background:none;border:0;border-bottom:1px solid var(--ink);padding:0 0 14px;box-shadow:none}
+html[data-concept="editorial"] .btn{border-radius:999px;min-height:62px;padding:0 34px;background:var(--ink);color:#fff}
+html[data-concept="editorial"] .btn:hover{background:var(--accent)}
+html[data-concept="editorial"] .btn-ghost,html[data-concept="editorial"] .btn-light{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+html[data-concept="editorial"] .btn-ghost:hover,html[data-concept="editorial"] .btn-light:hover{background:var(--ink);color:#fff}
+html[data-concept="editorial"] .nav .btn-sm{border-radius:999px;background:var(--ink);color:#fff}
+html[data-concept="editorial"] .hero-chips{border-top:1px solid var(--ink)}
+html[data-concept="editorial"] .hero-chips .chip{border-right-color:var(--line);font:italic 400 19px/1.2 "Playfair Display",Georgia,serif}
+html[data-concept="editorial"] .sec .sec-head h2::before,html[data-concept="editorial"] .sec-alt .sec-head h2::before{counter-increment:secnum;content:counter(secnum,decimal-leading-zero);display:block;font:italic 400 .62em/1 "Playfair Display",Georgia,serif;color:var(--accent);margin-bottom:.25em}
+html[data-concept="editorial"] .kicker{color:var(--ink);letter-spacing:.24em}
+html[data-concept="editorial"] .kicker::after{background:var(--ink)}
+html[data-concept="editorial"] .sec-alt{background:var(--tint)}
+html[data-concept="editorial"] .card{background:var(--surface);border-color:var(--line)}
+html[data-concept="editorial"] .card h3{font-size:22px;letter-spacing:-.01em}
+html[data-concept="editorial"] a.card:hover{background:var(--ink);color:#fff}
+html[data-concept="editorial"] a.card:hover h3,html[data-concept="editorial"] a.card:hover p,html[data-concept="editorial"] a.card:hover .more,html[data-concept="editorial"] a.card:hover .ico{color:#fff}
+html[data-concept="editorial"] .card-main{background:var(--accent);color:#fff;border-color:var(--accent)}
+html[data-concept="editorial"] .card-main h3,html[data-concept="editorial"] .card-main p,html[data-concept="editorial"] .card-main .more,html[data-concept="editorial"] .card-main .ico{color:#fff}
+html[data-concept="editorial"] .card-main h3{font:italic 400 40px/1.05 "Playfair Display",Georgia,serif}
+html[data-concept="editorial"] .formula>div{background:var(--surface)}
+html[data-concept="editorial"] .formula b{font:italic 400 30px/1.1 "Playfair Display",Georgia,serif}
+html[data-concept="editorial"] .formula .formula-res{background:var(--ink)}
+html[data-concept="editorial"] .formula .formula-res b{font-size:38px}
+html[data-concept="editorial"] .rm-teaser b{font:italic 400 21px/1.15 "Playfair Display",Georgia,serif}
+html[data-concept="editorial"] .cta-band{background:var(--ink)}
+html[data-concept="editorial"] .cta-band h2{font-weight:900}
+html[data-concept="editorial"] .ftr{background:#141010}
+
+/* ---------- 3. «Бенто»: мягкие скругления, карточки-плитки разного размера, градиентные панели ---------- */
+html[data-concept="bento"]{
+  --bg:#f5f3f4; --surface:#ffffff; --tint:#fbf5f6; --line:#ebe4e6; --text:#17121a; --muted:#5e5660; --ink:#17121a;
+  --rad:28px;
+}
+html[data-concept="bento"] body{background:var(--bg)}
+html[data-concept="bento"] .hdr{background:rgba(245,243,244,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:0}
+html[data-concept="bento"] .nav .btn-sm{border-radius:999px}
+html[data-concept="bento"] .hero{background:transparent;border:0;padding:28px 0 0}
+html[data-concept="bento"] .hero>.wrap{background:radial-gradient(700px 420px at 90% 0%,rgba(130,31,48,.30),transparent 60%),radial-gradient(600px 380px at 0% 100%,rgba(233,199,164,.45),transparent 60%),#fff;border-radius:40px;padding:72px 64px 40px;box-shadow:0 30px 80px -40px rgba(60,20,30,.35);position:relative;overflow:hidden}
+html[data-concept="bento"] .hero::after,html[data-concept="bento"] .hero::before{display:none}
+html[data-concept="bento"] .hero h1{font-size:clamp(38px,5.4vw,78px)}
+html[data-concept="bento"] .tagline{border-radius:18px}
+html[data-concept="bento"] .btn{border-radius:999px;min-height:60px;box-shadow:0 12px 30px -12px rgba(130,31,48,.7)}
+html[data-concept="bento"] .btn-ghost,html[data-concept="bento"] .btn-light{border-radius:999px;background:#fff;color:var(--accent);box-shadow:inset 0 0 0 1.5px rgba(130,31,48,.25)}
+html[data-concept="bento"] .hero-chips{display:flex;flex-wrap:wrap;gap:10px;border:0;margin:44px 0 0}
+html[data-concept="bento"] .hero-chips .chip{border:0;border-radius:999px;min-height:0;padding:12px 18px;background:rgba(130,31,48,.07);font-size:14px}
+html[data-concept="bento"] .hero a.chip:hover{background:var(--accent);color:#fff}
+html[data-concept="bento"] .cards{gap:16px;padding:0}
+html[data-concept="bento"] .card{border:0;margin:0;border-radius:var(--rad);background:var(--surface);box-shadow:0 1px 0 var(--line),0 18px 40px -28px rgba(60,20,30,.35);transition:transform .25s,box-shadow .25s}
+html[data-concept="bento"] a.card:hover{transform:translateY(-4px);box-shadow:0 26px 50px -24px rgba(130,31,48,.45);background:var(--surface);color:inherit}
+html[data-concept="bento"] .card .ico{background:rgba(130,31,48,.08);border-radius:16px;padding:10px;width:48px;height:48px;color:var(--accent)}
+html[data-concept="bento"] .cards-3 .card-main{grid-column:span 2;grid-row:span 2;background:linear-gradient(150deg,#821f30,#4e0f1b);color:#fff;padding:52px}
+html[data-concept="bento"] .cards-3 .card-main h3{font-size:clamp(30px,3vw,46px);color:#fff}
+html[data-concept="bento"] .cards-3 .card-main p,html[data-concept="bento"] .cards-3 .card-main .more{color:rgba(255,255,255,.85)}
+html[data-concept="bento"] .cards-3 .card-main .ico{background:rgba(255,255,255,.14);color:#fff}
+html[data-concept="bento"] a.card.card-all{border-radius:var(--rad);background:#17121a}
+html[data-concept="bento"] .sec-alt{background:transparent}
+html[data-concept="bento"] .sec-alt>.wrap{background:#fff;border-radius:40px;padding-top:64px;padding-bottom:64px}
+html[data-concept="bento"] .formula{gap:12px}
+html[data-concept="bento"] .formula>div{border-radius:24px;border:0;background:var(--tint)}
+html[data-concept="bento"] .formula>div::after{display:none}
+html[data-concept="bento"] .formula i{margin:0;align-self:center;box-shadow:0 8px 20px -10px rgba(60,20,30,.5)}
+html[data-concept="bento"] .formula .formula-res{background:linear-gradient(150deg,#821f30,#4e0f1b)}
+html[data-concept="bento"] .rm-teaser a{background:#fff;border-radius:24px;box-shadow:0 18px 40px -30px rgba(60,20,30,.4)}
+html[data-concept="bento"] .audit-promo{border-radius:40px;background:linear-gradient(120deg,#17121a,#3a1420)}
+html[data-concept="bento"] .cta-band>.wrap{border-radius:40px}
+html[data-concept="bento"] .cta-band{background:transparent;padding:0 0 40px}
+html[data-concept="bento"] .cta-band::before{display:none}
+html[data-concept="bento"] .cta-in{background:linear-gradient(120deg,#821f30,#b2384e);border-radius:40px;padding:64px}
+html[data-concept="bento"] .ftr{border-radius:40px 40px 0 0}
+html[data-concept="bento"] .cat-group,html[data-concept="bento"] .faq details{border-radius:20px}
+@media (max-width:900px){
+  html[data-concept="bento"] .hero>.wrap{border-radius:28px;padding:44px 22px 28px}
+  html[data-concept="bento"] .cards-3 .card-main{grid-column:auto;grid-row:auto;padding:34px}
+  html[data-concept="bento"] .cta-in{padding:40px 22px;border-radius:28px}
+  html[data-concept="bento"] .sec-alt>.wrap{border-radius:28px}
+}
+
+/* на мобильных размытие шапки ломает выезжающее меню — отключаем */
+@media (max-width:1100px){
+  html[data-concept] .hdr{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  html[data-concept="dark"] .hdr,html[data-concept="dark"] .nav{background:#0c0a0b}
+  html[data-concept="bento"] .hdr,html[data-concept="bento"] .nav{background:#f5f3f4}
+}

@@ -262,6 +262,8 @@ ${p.noindex ? '<meta name="robots" content="noindex, follow">' : ''}
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/style.css?v=${V}">
 <link rel="stylesheet" href="/assets/style-iguide.css?v=${V}">
+<link rel="stylesheet" href="/assets/concepts.css?v=${V}">
+<script>try{var q=new URLSearchParams(location.search).get('concept');if(q!==null)sessionStorage.setItem('ig-concept',q);var c=sessionStorage.getItem('ig-concept');if(c)document.documentElement.setAttribute('data-concept',c)}catch(e){}</script>
 <link rel="preload" href="/assets/fonts/nunito-sans-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 ${site.designLab ? `<link rel="stylesheet" href="/assets/themes.css?v=${V}">
 <script>(function(){var r=document.documentElement;try{var p=new URLSearchParams(location.search).get('palette')||localStorage.getItem('ig-palette');if(p)r.setAttribute('data-palette',p);var a=localStorage.getItem('ig-anim');if(a!==null)r.setAttribute('data-anim',a);var c=JSON.parse(localStorage.getItem('ig-custom')||'{}');for(var k in c)r.style.setProperty(k,c[k])}catch(e){}})()</script>` : ''}
